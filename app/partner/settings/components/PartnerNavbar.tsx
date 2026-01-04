@@ -2,6 +2,7 @@ import Link from "next/link"
 import { TEatLogo } from "@/components/auth/logo"
 import { LogOut, Menu, X } from "lucide-react"
 import { PartnerNavbarProps } from "./types"
+import { API_URL } from "@/lib/config"
 
 export default function PartnerNavbar({ canteenName, menuOpen, setMenuOpen }: PartnerNavbarProps) {
   const navItems = [
@@ -11,6 +12,33 @@ export default function PartnerNavbar({ canteenName, menuOpen, setMenuOpen }: Pa
     { href: "/partner/settings", label: "Pengaturan" },
   ]
 
+  const handleLogout = async () => {
+    try {
+      const token = localStorage.getItem("token")
+      if (token) {
+        await fetch(`${API_URL}/api/logout`, {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Accept": "application/json"
+          }
+        })
+      }
+    } catch (error) {
+      console.error("Logout error:", error)
+    } finally {
+      localStorage.removeItem("token")
+      localStorage.removeItem("role")
+      localStorage.removeItem("kantin_id")
+      localStorage.removeItem("user")
+
+      document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT"
+      document.cookie = "role=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT"
+      document.cookie = "kantin_id=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT"
+
+      window.location.href = "/login"
+    }
+  }
   return (
     <header className="bg-secondary border-b border-gray-200 sticky top-0 z-50">
       <div className="px-4 sm:px-6 lg:px-12 py-4 flex items-center justify-between">
@@ -37,7 +65,9 @@ export default function PartnerNavbar({ canteenName, menuOpen, setMenuOpen }: Pa
           </button>
 
           {/* Logout Button - Desktop only */}
-          <button className="hidden md:flex items-center gap-2 text-gray-600 hover:text-primary transition p-2">
+          <button
+            onClick={handleLogout}
+            className="hidden md:flex items-center gap-2 text-gray-600 hover:text-primary transition p-2">
             <LogOut size={20} />
             <span className="text-sm">Logout</span>
           </button>
