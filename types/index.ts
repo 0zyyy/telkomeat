@@ -23,7 +23,7 @@ export interface MenuItem {
     price: number
     image: string
     category: CategoryType
-    available?: boolean
+    available?: boolean | "0" | "1"
 }
 
 export interface CartItem extends MenuItem {
@@ -48,7 +48,7 @@ export interface Order {
     id: string
     customer: string
     items: OrderItem[]
-    total: number
+    amount: number
     status: OrderStatus
     timestamp: string
     notes?: string

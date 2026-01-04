@@ -6,8 +6,9 @@ import { MenuItemCardProps } from "./types"
 import { API_URL } from "@/lib/config"
 
 export default function MenuItemCard({ item, onEdit, onDelete }: MenuItemCardProps) {
-  const isAvailable = item.available ?? true
-  
+  // Handle string "0"/"1" from API, boolean, or undefined (default to true)
+  const isAvailable = item.available === "1" || item.available === true || item.available === undefined
+
   const handleToggleStatus = async () => {
     try {
       const token = localStorage.getItem("token")
@@ -48,11 +49,10 @@ export default function MenuItemCard({ item, onEdit, onDelete }: MenuItemCardPro
           sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
         />
         {/* Status Badge */}
-        <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-medium ${
-          isAvailable 
-            ? 'bg-green-100 text-green-800' 
+        <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-medium ${isAvailable
+            ? 'bg-green-100 text-green-800'
             : 'bg-red-100 text-red-800'
-        }`}>
+          }`}>
           {isAvailable ? 'Aktif' : 'Nonaktif'}
         </div>
       </div>
@@ -65,31 +65,30 @@ export default function MenuItemCard({ item, onEdit, onDelete }: MenuItemCardPro
             {item.category}
           </span>
         </div>
-        
+
         <p className="text-gray-600 text-xs sm:text-sm mb-2 sm:mb-3 line-clamp-2">
           {item.description}
         </p>
-        
+
         <div className="flex justify-between items-center">
           <p className="text-base sm:text-lg font-bold text-primary">
             Rp {item.price.toLocaleString("id-ID")}
           </p>
-          
+
           {/* Action Buttons */}
           <div className="flex gap-1">
             {/* Toggle Status Button */}
             <button
               onClick={handleToggleStatus}
-              className={`p-1.5 sm:p-2 rounded-lg transition ${
-                isAvailable 
-                  ? 'bg-yellow-100 text-yellow-600 hover:bg-yellow-200' 
+              className={`p-1.5 sm:p-2 rounded-lg transition ${isAvailable
+                  ? 'bg-yellow-100 text-yellow-600 hover:bg-yellow-200'
                   : 'bg-green-100 text-green-600 hover:bg-green-200'
-              }`}
+                }`}
               title={isAvailable ? 'Nonaktifkan' : 'Aktifkan'}
             >
               {isAvailable ? <EyeOff size={14} className="sm:size-4" /> : <Eye size={14} className="sm:size-4" />}
             </button>
-            
+
             {/* Edit Button */}
             <button
               onClick={() => onEdit(item)}
@@ -98,7 +97,7 @@ export default function MenuItemCard({ item, onEdit, onDelete }: MenuItemCardPro
             >
               <Edit2 size={14} className="sm:size-4" />
             </button>
-            
+
             {/* Delete Button */}
             <button
               onClick={() => onDelete(item.id)}
