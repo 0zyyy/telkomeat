@@ -88,10 +88,9 @@ export default function MenuManagement() {
         ? `${API_URL}/api/products/${editingId}`
         : `${API_URL}/api/products`
 
-      const method = editingId ? "PUT" : "POST"
 
       const res = await fetch(url, {
-        method,
+        method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
         },
