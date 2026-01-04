@@ -74,7 +74,7 @@ export default function OrdersTable({ orders, onViewOrder }: OrdersTableProps) {
                   <td className="py-4 px-6 text-gray-600">{order.customer}</td>
                   <td className="py-4 px-6 text-gray-600">{order.items.length} item</td>
                   <td className="py-4 px-6 font-medium text-foreground">
-                    Rp {Number(order.total || 0).toLocaleString('id-ID')}
+                    Rp {Number(order.amount || 0).toLocaleString('id-ID')}
                   </td>
                   <td className="py-4 px-6">
                     <span
@@ -115,14 +115,14 @@ export default function OrdersTable({ orders, onViewOrder }: OrdersTableProps) {
                 {getStatusLabel(order.status)}
               </span>
             </div>
-            
+
             <div className="flex justify-between text-sm">
               <span className="text-gray-600">{order.items.length} item</span>
               <span className="font-medium text-foreground">
-                Rp {Number(order.total || 0).toLocaleString('id-ID')}
+                Rp {Number(order.amount || 0).toLocaleString('id-ID')}
               </span>
             </div>
-            
+
             <div className="flex justify-between items-center text-xs text-gray-500">
               <span>{formatTimestamp(order.timestamp)}</span>
               <button

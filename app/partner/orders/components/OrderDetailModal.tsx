@@ -93,7 +93,7 @@ export default function OrderDetailModal({
                 <span className="font-medium">Waktu:</span> {formatDate(order.timestamp)}
               </p>
               <p className="text-xs sm:text-sm">
-                <span className="font-medium">Status:</span> 
+                <span className="font-medium">Status:</span>
                 <span className={`ml-2 px-2 py-1 rounded-full text-xs ${getStatusColor(order.status)}`}>
                   {getStatusLabel(order.status)}
                 </span>
@@ -154,9 +154,9 @@ export default function OrderDetailModal({
                     </div>
                     <span className="text-xs text-gray-500 hidden sm:inline">Klik untuk melihat</span>
                   </div>
-                  
+
                   {/* Thumbnail */}
-                  <div 
+                  <div
                     className="cursor-pointer border border-gray-300 rounded overflow-hidden max-w-xs mx-auto"
                     onClick={handleViewProof}
                   >
@@ -165,9 +165,9 @@ export default function OrderDetailModal({
                         <p className="text-gray-500 text-xs sm:text-sm">Gambar tidak dapat dimuat</p>
                       </div>
                     ) : (
-                      <img 
-                        src={order.paymentProof} 
-                        alt="Bukti Pembayaran" 
+                      <img
+                        src={order.paymentProof}
+                        alt="Bukti Pembayaran"
                         className="w-full h-32 sm:h-40 object-contain bg-white hover:opacity-90 transition"
                         onError={() => setImgError(true)}
                       />
@@ -209,7 +209,7 @@ export default function OrderDetailModal({
             <div className="flex justify-between items-center">
               <span className="font-bold text-foreground text-sm sm:text-base">Total Pembayaran:</span>
               <span className="text-lg sm:text-xl font-bold text-primary">
-                Rp {order.total.toLocaleString('id-ID')}
+                Rp {order.amount.toLocaleString('id-ID')}
               </span>
             </div>
           </div>
@@ -217,14 +217,14 @@ export default function OrderDetailModal({
           {/* Tombol Aksi untuk Pesanan Pending */}
           {order.status === "pending" && (
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-3 sm:pt-4">
-              <button 
+              <button
                 onClick={() => onConfirmOrder(order.id)}
                 className="flex-1 bg-green-500 text-white py-2 rounded-lg font-medium hover:opacity-90 transition flex items-center justify-center gap-1 sm:gap-2 text-sm sm:text-base"
               >
                 <CheckCircle size={14} className="sm:size-5" />
                 Konfirmasi
               </button>
-              <button 
+              <button
                 onClick={() => onCancelOrder(order.id)}
                 className="flex-1 bg-red-500 text-white py-2 rounded-lg font-medium hover:opacity-90 transition flex items-center justify-center gap-1 sm:gap-2 text-sm sm:text-base"
               >

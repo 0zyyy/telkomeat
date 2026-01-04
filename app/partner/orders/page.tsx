@@ -68,7 +68,7 @@ export default function PartnerOrders() {
                 quantity: item.quantity || 1,
                 price: item.price || 0
               })) : [],
-              total: typeof o.amount === 'string' ?
+              amount: typeof o.amount === 'string' ?
                 parseFloat(o.amount.replace(/[^\d.-]/g, '')) :
                 Number(o.amount || 0),
               status: status,
