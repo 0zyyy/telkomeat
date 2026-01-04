@@ -24,7 +24,6 @@ export default function CanteenDetailPage({ params }: { params: { id: string } }
   const [error, setError] = useState<string | null>(null)
   const [canteenActive, setCanteenActive] = useState<boolean>(true)
 
-  // State untuk modal detail
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -79,7 +78,6 @@ export default function CanteenDetailPage({ params }: { params: { id: string } }
 
   // --- Cart Logic ---
   const addToCartDirect = (item: MenuItem) => {
-    // Fungsi untuk tambah langsung dari card (tanpa modal)
     const existingItem = cart.find((i) => i.id === item.id)
     if (existingItem) {
       setCart(cart.map((i) => (i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i)))
@@ -89,7 +87,6 @@ export default function CanteenDetailPage({ params }: { params: { id: string } }
   }
 
   const addToCartWithDetails = (item: MenuItem, quantity: number, notes?: string) => {
-    // Fungsi untuk tambah dari modal (dengan quantity dan notes)
     const existingItem = cart.find((i) => i.id === item.id)
 
     if (existingItem) {
@@ -126,7 +123,6 @@ export default function CanteenDetailPage({ params }: { params: { id: string } }
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0)
 
-  // --- Modal Handler ---
   const handleItemClick = (item: MenuItem) => {
     setSelectedItem(item)
     setIsModalOpen(true)
