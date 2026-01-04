@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { useRouter, useParams } from "next/navigation"
 import OrderHistoryNavbar from "@/app/order-history/components/OrderHistoryNavbar"
 import { ArrowLeft, Store, CreditCard, Calendar, Package, MessageSquare } from "lucide-react"
+import { API_URL } from "@/lib/config"
 
 // Update interface
 interface OrderDetail {
@@ -62,7 +63,7 @@ export default function OrderDetailPage() {
         return
       }
 
-      const response = await fetch(`http://localhost:8000/api/user/orders/${orderId}`, {
+      const response = await fetch(`${API_URL}/api/user/orders/${orderId}`, {
         headers: {
           "Authorization": `Bearer ${token}`,
           "Accept": "application/json"

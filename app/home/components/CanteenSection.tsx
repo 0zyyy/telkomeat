@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { CheckCircle, XCircle } from "lucide-react"
 import { CANTEENS } from "../../canteen/[id]/components/constants"
+import { API_URL } from "@/lib/config"
 
 export default function CanteenSection() {
   const [canteenStatus, setCanteenStatus] = useState<any>({})
@@ -21,7 +22,7 @@ export default function CanteenSection() {
 
       for (const kantin of canteenList) {
         try {
-          const res = await fetch(`http://localhost:8000/api/canteen/${kantin.id}/products`, {
+          const res = await fetch(`${API_URL}/api/canteen/${kantin.id}/products`, {
             cache: "no-store",
           })
           const data = await res.json()

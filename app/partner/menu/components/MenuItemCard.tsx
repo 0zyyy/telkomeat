@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { Edit2, Trash2, Eye, EyeOff } from "lucide-react"
 import { MenuItemCardProps } from "./types"
+import { API_URL } from "@/lib/config"
 
 export default function MenuItemCard({ item, onEdit, onDelete }: MenuItemCardProps) {
   const isAvailable = item.available ?? true
@@ -10,7 +11,7 @@ export default function MenuItemCard({ item, onEdit, onDelete }: MenuItemCardPro
   const handleToggleStatus = async () => {
     try {
       const token = localStorage.getItem("token")
-      const response = await fetch(`http://localhost:8000/api/products/${item.id}/status`, {
+      const response = await fetch(`${API_URL}/api/products/${item.id}/status`, {
         method: "PATCH",
         headers: {
           "Authorization": `Bearer ${token}`,
