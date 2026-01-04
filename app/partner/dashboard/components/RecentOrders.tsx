@@ -2,7 +2,6 @@ import Link from "next/link"
 import { RecentOrdersProps } from "./types"
 
 export default function RecentOrders({ orders }: RecentOrdersProps) {
-  console.log(orders);
   const getStatusColor = (status: string) => {
     switch (status) {
       case "Selesai":
@@ -60,7 +59,7 @@ export default function RecentOrders({ orders }: RecentOrdersProps) {
                 <td className="py-3 px-4 font-medium text-foreground">{order.id}</td>
                 <td className="py-3 px-4 text-gray-600">{order.customer}</td>
                 <td className="py-3 px-4 text-gray-600">{order.items.length} item</td>
-                <td className="py-3 px-4 font-medium text-foreground">Rp {Number(order.amount as any).toFixed(2)}</td>
+                <td className="py-3 px-4 font-medium text-foreground">Rp {Number(order.amount).toFixed(2)}</td>
                 <td className="py-3 px-4">
                   <span
                     className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}
@@ -91,7 +90,7 @@ export default function RecentOrders({ orders }: RecentOrdersProps) {
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-gray-600">{order.items.length} item</span>
-              <span className="font-medium text-foreground">Rp {Number(order.total).toFixed(2)}</span>
+              <span className="font-medium text-foreground">Rp {Number(order.amount).toFixed(2)}</span>
             </div>
           </div>
         ))}

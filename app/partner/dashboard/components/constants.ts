@@ -11,9 +11,9 @@ export const SALES_DATA: SalesData[] = [
 ]
 
 export const RECENT_ORDERS: Order[] = [
-  { id: "ORD-001", customer: "John Doer", items: [], total: 45.5, status: "completed", timestamp: new Date().toISOString() },
-  { id: "ORD-002", customer: "Jane Smith", items: [], total: 32.0, status: "pending", timestamp: new Date().toISOString() },
-  { id: "ORD-003", customer: "Bob Wilson", items: [], total: 58.75, status: "completed", timestamp: new Date().toISOString() },
-  { id: "ORD-004", customer: "Alice Brown", items: [], total: 28.0, status: "confirmed", timestamp: new Date().toISOString() },
-  { id: "ORD-005", customer: "Charlie Davis", items: [], total: 72.25, status: "completed", timestamp: new Date().toISOString() },
+  { id: "ORD-001", customer: "John Doer", items: [], amount: 45.5, status: "completed", timestamp: new Date().toISOString() },
+  { id: "ORD-002", customer: "Jane Smith", items: [], amount: 32.0, status: "pending", timestamp: new Date().toISOString() },
+  { id: "ORD-003", customer: "Bob Wilson", items: [], amount: 58.75, status: "completed", timestamp: new Date().toISOString() },
+  { id: "ORD-004", customer: "Alice Brown", items: [], amount: 28.0, status: "confirmed", timestamp: new Date().toISOString() },
+  { id: "ORD-005", customer: "Charlie Davis", items: [], amount: 72.25, status: "completed", timestamp: new Date().toISOString() },
 ]
