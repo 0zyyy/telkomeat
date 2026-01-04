@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, use, useEffect } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import CanteenNavbar from "./components/CanteenNavbar"
 import CanteenInfoSection from "./components/CanteenInfoSection"
@@ -13,8 +13,8 @@ import { CartItem, MenuItem } from "./components/types"
 import { AlertTriangle, Store, Clock } from "lucide-react"
 import { API_URL } from "@/lib/config"
 
-export default function CanteenDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params)
+export default function CanteenDetailPage({ params }: { params: { id: string } }) {
+  const { id } = params
   const canteen = CANTEENS[id as keyof typeof CANTEENS]
   const [menuOpen, setMenuOpen] = useState(false)
   const [cart, setCart] = useState<CartItem[]>([])
