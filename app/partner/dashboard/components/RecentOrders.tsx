@@ -2,6 +2,7 @@ import Link from "next/link"
 import { RecentOrdersProps } from "./types"
 
 export default function RecentOrders({ orders }: RecentOrdersProps) {
+  console.log(orders);
   const getStatusColor = (status: string) => {
     switch (status) {
       case "completed":
